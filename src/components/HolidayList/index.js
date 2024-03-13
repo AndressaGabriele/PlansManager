@@ -1,5 +1,5 @@
+import HolidayDetails from "components/HolidayDetails";
 import React, { useState } from "react";
-import HolidayDetails from "./HolidayDetails";
 
 function HolidayList({ holidays, onEditHoliday, onDeleteHoliday }) {
   const [selectedHolidayIndex, setSelectedHolidayIndex] = useState(null);
@@ -29,7 +29,7 @@ function HolidayList({ holidays, onEditHoliday, onDeleteHoliday }) {
             </p>
             <div className="flex items-center space-x-4">
               <button
-                className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={() => onEditHoliday(index)}
               >
                 Editar

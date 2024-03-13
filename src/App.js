@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import HolidayForm from './components/HolidayForm';
-import HolidayList from './components/HolidayList';
+import HolidayForm from 'components/HolidayForm';
+import HolidayList from 'components/HolidayList';
+
 
 function App() {
   const [holidays, setHolidays] = useState(() => {
