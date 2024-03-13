@@ -23,7 +23,7 @@ function HolidayForm({ onAddHoliday }) {
       setDateError("Data inválida. Por favor, insira uma data válida.");
       setTimeout(() => {
         setDateError("");
-      }, 5000); 
+      }, 5000);
       return;
     }
 

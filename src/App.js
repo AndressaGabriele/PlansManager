@@ -6,7 +6,7 @@ import HolidayList from './components/HolidayList';
 function App() {
   const [holidays, setHolidays] = useState(() => {
     const savedHolidays = JSON.parse(localStorage.getItem('holidays'));
-    return savedHolidays || []; // Se não houver feriados salvos, inicializa como um array vazio
+    return savedHolidays || []; 
   });  const [selectedHolidayIndex, setSelectedHolidayIndex] = useState(null);
 
   useEffect(() => {
@@ -31,19 +31,19 @@ function App() {
     const updatedHolidays = [...holidays];
     updatedHolidays[selectedHolidayIndex] = updatedHoliday;
     setHolidays(updatedHolidays);
-    setSelectedHolidayIndex(null); // Resetar o estado de edição
-    console.log("Feriados salvos:", updatedHolidays); // Adicione este log
+    setSelectedHolidayIndex(null); 
+    console.log("Feriados salvos:", updatedHolidays); 
   };
 
   const handleCancelEdit = () => {
-    setSelectedHolidayIndex(null); // Resetar o estado de edição
+    setSelectedHolidayIndex(null); 
   };
 
   const handleDeleteHoliday = (index) => {
     const updatedHolidays = [...holidays];
     updatedHolidays.splice(index, 1);
     setHolidays(updatedHolidays);
-    console.log("Feriados salvos:", updatedHolidays); // Adicione este log
+    console.log("Feriados salvos:", updatedHolidays); 
   };
 
   return (

@@ -1,37 +1,36 @@
-# Gerenciador de Planos de Férias 2024 🏖️
+# Holiday Plans Manager 2024 🏖️
 
-Um aplicativo web simples para gerenciar planos de férias para o ano de 2024.
+This is a web application project for managing holiday plans for the year 2024. It allows you to add, view, edit, and delete holiday plans, as well as print the details in PDF format.
 
-## Funcionalidades ✨
+## Features ✨
 
-- Adicionar novos planos de férias.
-- Visualizar, editar e excluir planos de férias existentes.
-- Imprimir detalhes dos planos de férias em formato PDF.
+- Add new holiday plans.
+- View all existing holiday plans.
+- Edit existing holiday plans.
+- Delete existing holiday plans.
+- Print holiday plan details in PDF format.
 
-## Tecnologias Utilizadas 🚀
+## Installation and Usage ⚙️
 
-- **React.js**: Biblioteca JavaScript para criar interfaces de usuário.
-- **Tailwind CSS**: Framework de CSS utilitário para estilização rápida e eficiente.
-- **HTML/CSS**: Linguagens de marcação e estilo para a construção da interface do usuário.
-- **React-To-PDF**: Biblioteca para criar arquivos PDF a partir de componentes React.
+1. Clone this repository:
 
-## Instalação e Uso 🛠️
+   ```bash
+   git clone https://github.com/your-username/holiday-plans-manager.git
+    ```
+2. Navigate to the project directory:
+    cd holiday-plans-manager
 
-1. **Clonagem do Repositório**: `git clone https://github.com/seu-usuario/gerenciador-planos-ferias.git`
-2. **Instalação das Dependências**: `npm install`
-3. **Iniciar o Servidor de Desenvolvimento**: `npm start`
-4. **Acesso ao Aplicativo**: Abra o navegador e acesse http://localhost:3000 para visualizar o aplicativo.
+3. Install dependencies:
+npm install
 
-## Contribuição ❤️
+4. Start the development server:
+npm start
 
-Contribuições são bem-vindas! Siga estas etapas:
+## Testing 🧪
 
-1. Faça um Fork do repositório.
-2. Crie um branch para sua feature (`git checkout -b feature/sua-feature`).
-3. Faça commit de suas mudanças (`git commit -am 'Adicione uma nova feature'`).
-4. Faça push para o branch (`git push origin feature/sua-feature`).
-5. Envie um pull request.
+After starting the development server, you can run the project tests with the following command:
 
-## Licença 📝
+npm test
 
-Este projeto está licenciado sob a [MIT License](https://opensource.org/licenses/MIT).
+## Performance 🚀
+To ensure the quality and performance of the application, audits were conducted using Google Chrome's Lighthouse. Below are the results obtained:

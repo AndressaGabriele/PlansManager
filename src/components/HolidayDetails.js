@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import ReactToPrint from 'react-to-print';
-import { FaCalendarAlt, FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
+import React, { useRef } from "react";
+import ReactToPrint from "react-to-print";
+import { FaCalendarAlt, FaMapMarkerAlt, FaUsers } from "react-icons/fa";
 
 const HolidayDetails = ({ holiday }) => {
   const componentRef = useRef();
@@ -24,10 +24,13 @@ const HolidayDetails = ({ holiday }) => {
         <p className="text-gray-700 mb-2">
           <strong>Descrição:</strong> {holiday.description}
         </p>
-        {/* Adicione mais detalhes do plano de férias, se necessário */}
       </div>
       <ReactToPrint
-        trigger={() => <button className="bg-blue-800 text-white px-4 py-2 rounded-md hover:bg-blue-600">Imprimir</button>}
+        trigger={() => (
+          <button className="bg-blue-800 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            Imprimir
+          </button>
+        )}
         content={() => componentRef.current}
       />
     </div>
