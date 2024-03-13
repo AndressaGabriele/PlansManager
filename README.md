@@ -28,9 +28,15 @@ npm start
 
 ## Testing 🧪
 
-After starting the development server, you can run the project tests with the following command:
+After starting the development server, you can run the project tests with the following command: 
+ - npm test
 
-npm test
+
+![Test](public/test.png)
+
+
 
 ## Performance 🚀
 To ensure the quality and performance of the application, audits were conducted using Google Chrome's Lighthouse. Below are the results obtained:
+
+![Test](public/perfomance.png)
