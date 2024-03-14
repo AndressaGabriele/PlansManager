@@ -1,97 +1,82 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import holidaySchema from "utils/holidaySchema";
 
 function HolidayForm({ onAddHoliday }) {
-  const isValidDateValue = (dateString) => {
-    const regex = /^\d{4}-\d{2}-\d{2}$/;
-    return regex.test(dateString);
-  };
+  const [validationErrors, setValidationErrors] = useState({});
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    date: "",
-    location: "",
-    participants: "",
-  });
-
-  const [dateError, setDateError] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!isValidDateValue(formData.date)) {
-      setDateError("Data inválida. Por favor, insira uma data válida.");
-      setTimeout(() => {
-        setDateError("");
-      }, 5000);
-      return;
+  const onSubmit = async (data) => {
+    try {
+      await holidaySchema.validate(data, { abortEarly: false });
+      onAddHoliday(data);
+      reset();
+    } catch (error) {
+      const errors = {};
+      error.inner.forEach((e) => {
+        errors[e.path] = e.message;
+      });
+      setValidationErrors(errors);
     }
-
-    onAddHoliday(formData);
-    setFormData({
-      title: "",
-      description: "",
-      date: "",
-      location: "",
-      participants: "",
-    });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   return (
     <div className="bg-gray-100 p-4 rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Adicionar Plano de Férias</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input
           type="text"
           name="title"
           placeholder="Título"
           className="mt-1 p-2 border rounded-md w-full"
-          value={formData.title}
-          onChange={handleChange}
-          required
+          {...register("title", { required: true })}
         />
+        {errors.title && <p className="text-red-500">Título é obrigatório</p>}
         <textarea
           name="description"
           placeholder="Descrição"
           className="mt-1 p-2 border rounded-md w-full"
-          value={formData.description}
-          onChange={handleChange}
-          required
+          {...register("description", { required: true })}
         />
-        <input
-          type="date"
-          name="date"
-          placeholder="Data"
-          className="mt-1 p-2 border rounded-md w-full"
-          value={formData.date}
-          onChange={handleChange}
-          required
-        />
-        {dateError && <p className="text-red-500">{dateError}</p>}
+        {errors.description && <p className="text-red-500">Descrição é obrigatória</p>}
+        <div className="flex space-x-4">
+          <div>
+            <label htmlFor="fromDate" className="block text-sm font-medium text-gray-700">Data de Início</label>
+            <input
+              type="date"
+              id="fromDate"
+              name="fromDate"
+              className="mt-1 p-2 border rounded-md w-full"
+              {...register("fromDate", { required: true })}
+            />
+            {errors.fromDate && <p className="text-red-500">Data de início é obrigatória</p>}
+          </div>
+          <div>
+            <label htmlFor="toDate" className="block text-sm font-medium text-gray-700">Data de Término</label>
+            <input
+              type="date"
+              id="toDate"
+              name="toDate"
+              className="mt-1 p-2 border rounded-md w-full"
+              {...register("toDate", { required: true })}
+            />
+            {errors.toDate && <p className="text-red-500">Data de término é obrigatória</p>}
+          </div>
+        </div>
         <input
           type="text"
           name="location"
           placeholder="Localização"
           className="mt-1 p-2 border rounded-md w-full"
-          value={formData.location}
-          onChange={handleChange}
-          required
+          {...register("location", { required: true })}
         />
+        {errors.location && <p className="text-red-500">Localização é obrigatória</p>}
         <input
           type="text"
           name="participants"
           placeholder="Participantes"
           className="mt-1 p-2 border rounded-md w-full"
-          value={formData.participants}
-          onChange={handleChange}
+          {...register("participants")}
         />
         <button
           type="submit"

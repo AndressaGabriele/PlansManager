@@ -3,12 +3,11 @@ import './App.css';
 import HolidayForm from 'components/HolidayForm';
 import HolidayList from 'components/HolidayList';
 
-
 function App() {
   const [holidays, setHolidays] = useState(() => {
-    const savedHolidays = JSON.parse(localStorage.getItem('holidays'));
-    return savedHolidays || []; 
-  });  const [selectedHolidayIndex, setSelectedHolidayIndex] = useState(null);
+    return JSON.parse(localStorage.getItem('holidays')) || [];
+  });
+  const [selectedHolidayIndex, setSelectedHolidayIndex] = useState(null);
 
   useEffect(() => {
     const savedHolidays = JSON.parse(localStorage.getItem('holidays'));
@@ -17,11 +16,14 @@ function App() {
     }
   }, []);
 
-
+  const saveHolidaysToLocalStorage = (holidays) => {
+    localStorage.setItem('holidays', JSON.stringify(holidays));
+  };
 
   const handleAddHoliday = (newHoliday) => {
-    setHolidays([...holidays, newHoliday]);
-    console.log("Feriados salvos:", holidays); 
+    const updatedHolidays = [...holidays, newHoliday];
+    setHolidays(updatedHolidays);
+    saveHolidaysToLocalStorage(updatedHolidays);
   };
 
   const handleEditHoliday = (index) => {
@@ -32,19 +34,19 @@ function App() {
     const updatedHolidays = [...holidays];
     updatedHolidays[selectedHolidayIndex] = updatedHoliday;
     setHolidays(updatedHolidays);
-    setSelectedHolidayIndex(null); 
-    console.log("Feriados salvos:", updatedHolidays); 
+    saveHolidaysToLocalStorage(updatedHolidays);
+    setSelectedHolidayIndex(null);
   };
 
   const handleCancelEdit = () => {
-    setSelectedHolidayIndex(null); 
+    setSelectedHolidayIndex(null);
   };
 
   const handleDeleteHoliday = (index) => {
     const updatedHolidays = [...holidays];
     updatedHolidays.splice(index, 1);
     setHolidays(updatedHolidays);
-    console.log("Feriados salvos:", updatedHolidays); 
+    saveHolidaysToLocalStorage(updatedHolidays);
   };
 
   return (
