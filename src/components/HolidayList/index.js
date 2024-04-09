@@ -6,7 +6,9 @@ function HolidayList({ holidays, onEditHoliday, onDeleteHoliday }) {
 
   const handleHolidayClick = (index) => {
     setSelectedHolidayIndex(index);
+
   };
+  
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">

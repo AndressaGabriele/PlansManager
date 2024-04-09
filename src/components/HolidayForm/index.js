@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import holidaySchema from "utils/holidaySchema";
 
-function HolidayForm({ onAddHoliday }) {
+function HolidayForm({ onAddHoliday, editedHolidayIndex, holidays }) {
   const [validationErrors, setValidationErrors] = useState({});
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  const editedHoliday = editedHolidayIndex !== null ? holidays[editedHolidayIndex] : null;
+
+  useEffect(() => {
+    if (editedHoliday) {
+      reset(editedHoliday);
+    }
+  }, [editedHoliday, reset]);
 
   const onSubmit = async (data) => {
     try {
       await holidaySchema.validate(data, { abortEarly: false });
-      onAddHoliday(data);
+      onAddHoliday(data, editedHolidayIndex);
       reset();
     } catch (error) {
       const errors = {};
@@ -90,3 +98,4 @@ function HolidayForm({ onAddHoliday }) {
 }
 
 export default HolidayForm;
+
