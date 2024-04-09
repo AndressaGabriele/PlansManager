@@ -21,7 +21,10 @@ function HolidayList({ holidays, onEditHoliday, onDeleteHoliday }) {
               <strong>Descrição:</strong> {holiday.description}
             </p>
             <p className="text-gray-700 mb-2">
-              <strong>Data:</strong> {holiday.date}
+              <strong>Data de Início:</strong> {holiday.fromDate}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <strong>Data de Término:</strong> {holiday.toDate}
             </p>
             <p className="text-gray-700 mb-2">
               <strong>Localização:</strong> {holiday.location}
